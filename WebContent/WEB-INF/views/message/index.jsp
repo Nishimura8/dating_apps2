@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
+    <c:param name="header">
+        <a class="mypage-mark" href="<c:url value='/users/new' />">マイメニュー</a>
+        <a class="message-mark" href="<c:url value='/rooms/index' />">メッセージ一覧</a>
+    </c:param>
     <c:param name="content">
         <c:if test="${flush != null}">
             <div id="flush_success">

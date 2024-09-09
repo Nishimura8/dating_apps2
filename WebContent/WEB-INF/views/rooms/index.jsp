@@ -15,8 +15,8 @@
                 <div id="header_2">
                     <div class="title"><a href="${pageContext.request.contextPath}">destiny</a></div>
                       <a href="<c:url value='/logout' />"><img src="https://xk3otuup.user.webaccel.jp/wp/wp-content/uploads/2020/09/dating1.png" height="50px" alt=""></a>
-                    <a href="<c:url value='/users/new' />"> <img src="https://www.omiai-jp.com/omiai/img/global_menu/mypage.svg?1592383735" alt="" class="mypage-mark"></a>
-                    <a href="<c:url value='/rooms/index' />">  <img src="https://www.omiai-jp.com/omiai/img/global_menu/message.svg?1592383735" alt="" class="message-mark"></a>
+        <a class="mypage-mark" href="<c:url value='/users/new' />">マイメニュー</a>
+        <a class="message-mark" href="<c:url value='/rooms/index' />">メッセージ一覧</a>
                 </div>
             </div>
             <div id="contents2">
