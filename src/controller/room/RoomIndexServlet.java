@@ -36,16 +36,13 @@ public class RoomIndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
-        User login_user = (User)request.getSession().getAttribute("login_user");
         int page = 1;
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
         List<Follow> follows = em.createNamedQuery("checkMyRoom", Follow.class)
-                                     .setParameter("follower", login_user)
-                                     .setParameter("follow", login_user)
                                      .getResultList();
-        
+
         List<Follow> followCheck = new ArrayList<Follow>();
         List<Integer> roomSave = new ArrayList<Integer>();
         for (Follow follow : follows) {
@@ -56,8 +53,6 @@ public class RoomIndexServlet extends HttpServlet {
             }
     }
 
-        
-        
         List<User> users = em.createNamedQuery("getAllUsers", User.class)
                 .setFirstResult(16 * (page - 1))
                 .setMaxResults(16)
