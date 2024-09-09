@@ -32,7 +32,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "checkMyRoom",
-            query = "SELECT f1 FROM Follow AS f1 WHERE f1.follower in (select f2.follower from Follow AS f2) and f1.follower in (select f3.follow from Follow f3)"
+            query = "SELECT f1 FROM Follow AS f1 WHERE f1.follower in (select f2.follower from Follow AS f2) and f1.follower in (select f3.follow from Follow f3) and f1.follow = :follow"
             ),
     @NamedQuery(
             name = "checkFollow",
