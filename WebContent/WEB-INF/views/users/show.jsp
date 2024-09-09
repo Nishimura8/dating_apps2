@@ -4,7 +4,7 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
 
-        <h2>${user.name}さんの詳細ページ</h2>
+        <h2>${user.name}さんのプロフィール</h2>
          <img style="width: 280px; height: 364px" src="<c:url value='${user.image}' />">
         <p>年齢：<c:out value="${user.age}" /></p>
         <p>都道府県：<c:out value="${user.prefecture}" /></p>
