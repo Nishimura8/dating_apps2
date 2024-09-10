@@ -64,7 +64,7 @@ public class MessageCreateServlet extends HttpServlet {
                 em.persist(m);
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().setAttribute("flush", "登録が完了しました。");
+                request.getSession().setAttribute("flush", "メッセージを送信しました。");
 
                 response.sendRedirect(request.getContextPath() + "/messages/index?id="+ r.getId());
             }
