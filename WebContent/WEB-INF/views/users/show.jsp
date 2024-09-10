@@ -16,7 +16,7 @@
             <input type="hidden" name="follower_id" value="${user.id}" />
             <input type="hidden" name="_token" value="${_token}" />
              <c:if test="${follower_count == 0}">
-            <button type="submit">フォローする</button>
+            <input type="submit" value="いいね👍" />
              </c:if>
         </form>
         <p><a href="${pageContext.request.contextPath}">一覧に戻る</a></p>
