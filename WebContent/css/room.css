@@ -142,5 +142,14 @@ button {
     width:161px;
     height:201px;
  }
-
-
+.message_name {
+    margin-top: -64px;
+    padding-left: 50px;
+}
+.message_action {
+    padding-left: 50px;
+}
+.message-information{
+    padding-top: 15px;
+    padding-left: 137px;
+}

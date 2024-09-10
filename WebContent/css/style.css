@@ -117,20 +117,16 @@ button {
 }
 
 .mypage-mark {
-     float:right;
-     padding-top:10px;
+    float:right;
+    padding-top:10px;
 }
-
-
 .user-data {
     padding: 20px;
     width: 161px;
     height: 267.5px;
     display:inline-block;
 }
- .img {
+.img {
     width:120px;
     height:156px;
- }
-
-
+}
