@@ -130,3 +130,17 @@ button {
     width:120px;
     height:156px;
 }
+.message-content{
+    padding-left: 54px;
+    margin-top: -46px;
+    padding-bottom: 28px;
+}
+.day{
+    background-color: #80808063;
+    border-radius: 9999px;
+    margin-left: 394px;
+    width: 82px;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+}

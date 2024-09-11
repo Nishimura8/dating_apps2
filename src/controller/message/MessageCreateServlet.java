@@ -1,6 +1,8 @@
 package controller.message;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -48,6 +50,11 @@ public class MessageCreateServlet extends HttpServlet {
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setCreated_at(currentTime);
+
+            Calendar cl = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String str = sdf.format(cl.getTime());
+            m.setPostedDay(str);
 
             List<String> errors = MessageValidator.validate(m);
             if(errors.size() > 0) {

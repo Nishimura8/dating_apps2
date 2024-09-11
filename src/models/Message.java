@@ -27,7 +27,11 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getMessagesAllRooms",
             query = "SELECT m FROM Message AS m WHERE m.room = :room ORDER BY m.id DESC"
-            ) 
+            ),
+    @NamedQuery(
+            name = "getPostedDay",
+            query = "SELECT distinct m.posted_day FROM Message AS m WHERE m.room = :room ORDER BY m.posted_day"
+            )
 })
 public class Message {
     @Id
@@ -48,6 +52,9 @@ public class Message {
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
+
+    @Column(name = "posted_day", nullable = false)
+    private String posted_day;
 
 
     public Integer getId() {
@@ -73,17 +80,25 @@ public class Message {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-    
+
     public User getUser() {
         return this.user;
     }
-    
+
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public void setPostedDay(String posted_day) {
+        this.posted_day= posted_day;
+    }
+
+    public String getPosted_day() {
+        return this.posted_day;
     }
 
 }

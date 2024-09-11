@@ -28,20 +28,11 @@
         </c:if>
             <c:forEach var="follow" items="${follows}" varStatus="status">
                 <div class="row${status.count % 2}"></div>
-                <c:choose>
-                    <c:when test="${sessionScope.login_user.id == follow.follower.id}">
-                        <div class="messge-information">
-                            <div class="message_name"><c:out value="${follow.follow.name}" />さんとのメッセージ</div>
-                            <div class="message_action"><a href="<c:url value='/messages/index?id=${follow.room.id}' />">メッセージを見る</a></div>
-                        </div>
-                   </c:when>
-                   <c:otherwise>
-                       <div class="message-information">
-                           <div class="message_name"><c:out value="${follow.follower.name}" />さんとのメッセージ</div>
-                           <div class="message_action"><a href="<c:url value='/messages/index?id=${follow.room.id}' />">メッセージを見る</a></div>
-                       </div>
-                   </c:otherwise>
-                </c:choose>
+                    <div class="message-information">
+                        <img style="width: 48px; height: 64px" src="<c:url value='${follow.follower.image}' />">
+                        <div class="message_name"><c:out value="${follow.follower.name}" />さんとのメッセージ</div>
+                        <div class="message_action"><a href="<c:url value='/messages/index?id=${follow.room.id}' />">メッセージを見る</a></div>
+                    </div>
             </c:forEach>
         <div id="pagination">
             <c:forEach var="i" begin="1" end="${((reports_count - 1) / 15) + 1}" step="1">
