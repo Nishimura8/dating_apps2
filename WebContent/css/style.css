@@ -132,7 +132,7 @@ button {
 }
 .message-content{
     padding-left: 54px;
-    margin-top: -46px;
+    margin-top: -55px;
     padding-bottom: 28px;
 }
 .day{
@@ -143,4 +143,8 @@ button {
     height: 34px;
     text-align: center;
     line-height: 34px;
+}
+.posted_time{
+    color: gray;
+    font-size: 12px;
 }

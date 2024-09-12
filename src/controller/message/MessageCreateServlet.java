@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -56,6 +57,15 @@ public class MessageCreateServlet extends HttpServlet {
             String str = sdf.format(cl.getTime());
             m.setPostedDay(str);
 
+            Date dateObj = new Date();
+            SimpleDateFormat format = new SimpleDateFormat( "HH:mm" );
+            // 日時情報を指定フォーマットの文字列で取得
+            String time = format.format( dateObj );
+            m.setPostedTime(time);
+
+            String weekDay = getDayOfTheWeekShort();
+            m.setPostedWeek(weekDay);
+
             List<String> errors = MessageValidator.validate(m);
             if(errors.size() > 0) {
                 em.close();
@@ -76,6 +86,25 @@ public class MessageCreateServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/messages/index?id="+ r.getId());
             }
         }
+    }
+
+    /**
+     * 現在の曜日を返します。
+     * ※曜日は省略します。
+     * @return  現在の曜日
+     */
+    public static String getDayOfTheWeekShort() {
+        Calendar cal = Calendar.getInstance();
+        switch (cal.get(Calendar.DAY_OF_WEEK)) {
+            case Calendar.SUNDAY: return "日";
+            case Calendar.MONDAY: return "月";
+            case Calendar.TUESDAY: return "火";
+            case Calendar.WEDNESDAY: return "水";
+            case Calendar.THURSDAY: return "木";
+            case Calendar.FRIDAY: return "金";
+            case Calendar.SATURDAY: return "土";
+        }
+        throw new IllegalStateException();
     }
 
 }

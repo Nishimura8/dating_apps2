@@ -17,26 +17,22 @@
             <c:forEach var="day" items="${day}">
                 <div class="day">
                     <c:if test="${ fn:substring( day , 4 , 5 ) == 0}">
-                        ${ fn:substring( day , 5 , 6 )}/${ fn:substring( day , 6 , 8 )}
+                        ${ fn:substring( day , 5 , 6 )}/${ fn:substring( day , 6 , 8 )}(${fn:substring( day , 8 , 9 )})
                     </c:if>
                     <c:if test="${ fn:substring( day , 4 , 5 ) == 1}">
-                        ${ fn:substring( day , 4 , 6 )}/${ fn:substring( day , 6 , 8 )}
+                        ${ fn:substring( day , 4 , 6 )}/${ fn:substring( day , 6 , 8 )}(${fn:substring( day , 8 , 9 )})
                     </c:if>
                 </div>
                 <c:forEach var="message" items="${message}">
-                    <c:if test="${message.posted_day == day}">
+                    <c:if test="${message.posted_day == fn:substring(day, 0, 8)}">
                         <div class="message-list">
                         <img style="width: 39px; height: 52px; border-radius:50%;" src="<c:url value='${message.user.image}'/>">
                             <div class="message-content">
                                 <div class="message-content2">
-                                    <c:choose>
-                                        <c:when test="${message.user.id == sessionScope.login_user.id}">
-                                            <c:out value="あなた：${message.content}"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:out value="${message.user.name}：${message.content}"/>
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <c:out value="${message.content}"/>
+                                    <div class="posted_time">
+                                        <c:out value="${message.posted_time}"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>

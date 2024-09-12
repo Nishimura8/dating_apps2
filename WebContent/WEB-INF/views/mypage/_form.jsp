@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${errors != null}">
@@ -81,18 +81,21 @@
 </select>
 <br /><br />
 <label for="gender">性別</label><br />
+
 <select name="gender">
      <c:if test="${user.gender == 1}">
         <option value="0" disabled >男性</option>
         <option value="1" selected >女性</option>
      </c:if>
 </select>
+
 <br /><br />
 <label class="photo">写真</label><br />
 <img src="<c:url value='${user.image}' />" class="img">
 <br />
 <input type="file" name="file"/><br />
 <br /><br />
+
 <p></p>
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

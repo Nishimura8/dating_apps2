@@ -52,20 +52,24 @@ public class MessageIndexServlet extends HttpServlet {
         long messages_count = (long)em.createNamedQuery("getMessagesCount", Long.class)
                                      .getSingleResult();
 
-        List<String> posted_day = em.createNamedQuery("getPostedDay", String.class)
-                .setParameter("room", room)
-                .getResultList();
 
-        List<String> posted_day2 = new ArrayList<String>();
-        for(int i=0; i<posted_day.size(); i++){
-            posted_day2.add(posted_day.get(i).substring(4,6)+ "月" + posted_day.get(i).substring(6,8)+"日");
+        List<String> posted = new ArrayList<String>();
+        for(int i=0; i < messages.size(); i++){
+            if(posted.size() != 0){
+                for(int j=0; j<posted.size(); j++){
+                    if(!posted.contains(messages.get(i).getPosted_day()+ messages.get(i).getPosted_week())){
+                        posted.add(messages.get(i).getPosted_day() + messages.get(i).getPosted_week());
+                    }
+                }
+            }else{
+                posted.add(messages.get(i).getPosted_day()+ messages.get(i).getPosted_week());
+            }
         }
 
         em.close();
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("room", room);
-        request.setAttribute("day", posted_day);
-        request.setAttribute("day2", posted_day2);
+        request.setAttribute("day", posted);
         request.setAttribute("message", messages);
         request.setAttribute("messages_count", messages_count);
         request.setAttribute("page", page);
