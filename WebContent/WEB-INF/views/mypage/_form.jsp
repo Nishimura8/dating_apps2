@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
 <br /><br />
 
 <label for="age">年齢</label><br />
-<input type="text" name="age" value="${user.age}" disabled/>
+<input type="date" name="date" value="${user.birth_day }" disabled/>
 <br /><br />
 
 <label for="password">パスワード</label><br />

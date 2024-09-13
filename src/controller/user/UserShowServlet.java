@@ -41,9 +41,18 @@ public class UserShowServlet extends HttpServlet {
                 .setParameter("follow", login_user)
                 .getSingleResult();
         em.close();
-        
+
+        UserIndexServlet uis = new UserIndexServlet();
+
+            String year = u.getBirth_day().substring(0,4);
+            String month = u.getBirth_day().substring(5,7);
+            String date = u.getBirth_day().substring(8,10);
+            int age = uis.getAge(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(date));
+            String.valueOf(age);
+
+        request.setAttribute("age", age);
         request.setAttribute("user", u);
-        request.setAttribute("follower_count", follower_count);  
+        request.setAttribute("follower_count", follower_count);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
         rd.forward(request, response);
     }

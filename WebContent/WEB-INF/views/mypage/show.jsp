@@ -9,7 +9,7 @@
     <c:param name="content">
         <h2>あなたのプロフィール</h2>
          <img style="width: 280px; height: 364px" src="<c:url value='${login_user.image}' />">
-        <p>年齢：<c:out value="${login_user.age}" /></p>
+        <p>年齢：<c:out value="${age}" /></p>
         <p>都道府県：<c:out value="${login_user.prefecture}" /></p>
         <p>自己紹介文：<c:out value="${login_user.content}" /></p>
         <form  method="POST" action="<c:url value='/follow/create' />">

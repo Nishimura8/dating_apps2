@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.user.UserIndexServlet;
 import models.User;
 import utils.DBUtil;
 
@@ -36,6 +37,16 @@ public class MyPageShowServlet extends HttpServlet {
         User login_user = (User)request.getSession().getAttribute("login_user");
         User u = em.find(User.class, login_user.getId());
         request.setAttribute("login_user", u);
+
+        UserIndexServlet uis = new UserIndexServlet();
+        
+        String year = u.getBirth_day().substring(0,4);
+        String month = u.getBirth_day().substring(5,7);
+        String date = u.getBirth_day().substring(8,10);
+        int age = uis.getAge(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(date));
+        String.valueOf(age);
+
+    request.setAttribute("age", age);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/mypage/show.jsp");
         rd.forward(request, response);
     }
