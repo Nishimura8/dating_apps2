@@ -18,11 +18,6 @@ public class UserValidator {
             errors.add(name_error);
         }
 
-        String age_error = _validateAge(u.getAge());
-        if(!age_error.equals("")) {
-            errors.add(age_error);
-        }
-
         String password_error = _validatePassword(u.getPassword(), password_check_flag);
         if(!password_error.equals("")) {
             errors.add(password_error);
@@ -35,14 +30,6 @@ public class UserValidator {
 
     private static String _validateName(String name) {
         if(name == null || name.equals("")) {
-            return "氏名を入力してください。";
-        }
-
-        return "";
-    }
-
-    private static String _validateAge(Integer age) {
-        if(age == null || age.equals("")) {
             return "氏名を入力してください。";
         }
 

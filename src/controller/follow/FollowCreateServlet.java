@@ -54,6 +54,8 @@ public class FollowCreateServlet extends HttpServlet {
             em.getTransaction().begin();
             f.setFollow((User)request.getSession().getAttribute("login_user"));
             f.setFollower(u);
+            u.setLikes(u.getLikes()+1);
+
             if(follows != null && follows.size() != 0) {
                 f.setRoom(follows.get(0).getRoom());
             } else {
@@ -64,7 +66,7 @@ public class FollowCreateServlet extends HttpServlet {
                 em.persist(r);
             }
 
-
+                em.persist(u);
                 em.persist(f);
                 em.getTransaction().commit();
                 em.close();

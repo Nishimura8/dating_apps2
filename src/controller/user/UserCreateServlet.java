@@ -57,7 +57,7 @@ public class UserCreateServlet extends HttpServlet {
             part.write(path);
             u.setImage("/uploaded/" + name);
 
-            u.setAge(Integer.parseInt(request.getParameter("age")));
+           //u.setAge(Integer.parseInt(request.getParameter("age")));
 
             u.setPrefecture(request.getParameter("prefecture"));
 
@@ -69,6 +69,10 @@ public class UserCreateServlet extends HttpServlet {
                             (String)this.getServletContext().getAttribute("pepper")
                             )
                     );
+
+            u.setLikes(0);
+
+            u.setBirthDay(request.getParameter("date"));
 
             List<String> errors = UserValidator.validate(u, true);
             if(errors.size() > 0) {

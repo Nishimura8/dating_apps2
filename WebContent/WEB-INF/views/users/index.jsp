@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <c:import url="../layout/app.jsp">
     <c:param name="header">
         <a class="mypage-mark" href="<c:url value='/mypage/show' />">マイメニュー</a>
@@ -12,6 +14,7 @@
             </div>
         </c:if>
         <div class="content2">
+            <% int i = 0; %>
             <c:forEach var="user" items="${users}">
                 <c:if test="${(sessionScope.login_user.gender == 0 && user.gender == 1) || (sessionScope.login_user.gender == 1 && user.gender == 0)}">
                     <div class="user-data">
@@ -23,7 +26,21 @@
                                 <c:out value="${user.name}"/>
                             </div>
                             <div class="age">
-                                <c:out value="${user.age}歳"/>
+                                <c:if test="${user.gender ==1 }">
+                                    <% List <String> age = new ArrayList<String>(); %>
+                                    <% age = (List<String>)request.getAttribute("womanAgeList"); %>
+                                    <%=age.get(i)%>歳
+                                    <%i+=1; %>
+                                </c:if>
+                                <c:if test="${user.gender ==0 }">
+                                    <% List <String> age = new ArrayList<String>(); %>
+                                    <% age = (List<String>)request.getAttribute("manAgeList"); %>
+                                    <%=age.get(i)%>歳
+                                    <%i+=1; %>
+                                </c:if>
+                            </div>
+                            <div class=likes>
+                                <c:out value="いいね数 ${user.likes}"/>
                             </div>
                         </div>
                     </div>

@@ -52,11 +52,14 @@ public class User {
     @Column(name = "image", columnDefinition="MEDIUMBLOB")
     private String image;
 
-    @Column(name = "age", nullable = false)
-    private Integer age;
-
     @Column(name = "password", length = 64, nullable = false)
     private String password;
+
+    @Column(name = "likes", nullable = false)
+    private Integer likes;
+
+    @Column(name = "birth_day", nullable = false)
+    private String birth_day;
 
 
     public Integer getId() {
@@ -91,13 +94,6 @@ public class User {
         this.prefecture = prefectures;
     }
 
-    public Integer getAge() {
-        return this.age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public Integer getGender() {
         return this.gender;
@@ -118,7 +114,24 @@ public class User {
     public String getImage() {
         return this.image;
     }
+
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Integer getLikes() {
+        return this.likes;
+    }
+
+    public String getBirth_day() {
+        return birth_day;
+    }
+
+    public void setBirthDay(String birth_day) {
+        this.birth_day = birth_day;
     }
 }

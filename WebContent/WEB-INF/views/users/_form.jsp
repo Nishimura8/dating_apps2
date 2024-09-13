@@ -15,8 +15,8 @@
 <input type="text" name="name" value="${user.name}" />
 <br /><br />
 
-<label for="age">年齢</label><br />
-<input type="text" name="age" value="${user.age}" />
+<label for="age">成年月日</label><br />
+<input type="date" name="date" value="1980-01-01">
 <br /><br />
 
 <label for="password">パスワード</label><br />
