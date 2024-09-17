@@ -75,6 +75,19 @@ public class UserCreateServlet extends HttpServlet {
             u.setBirthDay(request.getParameter("date"));
 
             List<String> errors = UserValidator.validate(u, true);
+            String password = EncryptUtil.getPasswordEncrypt(
+                    request.getParameter("password"),
+                    (String)this.getServletContext().getAttribute("pepper")
+                    );
+
+            long duplication_count = (long)em.createNamedQuery("getDuplicationCount", Long.class)
+                    .setParameter("user", u.getName())
+                    .setParameter("pass", password)
+                    .getSingleResult();
+            if(duplication_count > 0){
+                errors.add("このユーザー名とパスワードはすでに登録されています。");
+            }
+
             if(errors.size() > 0) {
                 em.close();
 

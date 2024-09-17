@@ -27,6 +27,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkLoginCodeAndPassword",
             query = "SELECT u FROM User AS u WHERE  u.name = :name AND u.password = :pass"
+            ),
+    @NamedQuery(
+            name = "getDuplicationCount",
+            query = "SELECT COUNT(u) FROM User AS u WHERE u.name = :user AND u.password = :pass"
             )
 })
 @Entity
