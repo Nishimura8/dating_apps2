@@ -49,6 +49,10 @@ public class LoginFilter implements Filter {
             User u = (User)session.getAttribute("login_user");
 
             if((servlet_path.equals("/users/new")) ||(servlet_path.equals("/users/create"))) {
+                if(u != null) {
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    return;
+                }
             } else if(!servlet_path.equals("/login")) {
                 if(u == null) {
                     ((HttpServletResponse)response).sendRedirect(context_path + "/login");
