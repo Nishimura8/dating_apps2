@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/app.jsp">
     <c:param name="header">
-        <a class="mypage-mark" href="<c:url value='/users/new' />">マイメニュー</a>
+        <a class="mypage-mark" href="<c:url value='/mypage/show' />">マイメニュー</a>
         <a class="message-mark" href="<c:url value='/rooms/index' />">メッセージ一覧</a>
     </c:param>
     <c:param name="content">
@@ -12,6 +12,7 @@
         <p>年齢：<c:out value="${age}" /></p>
         <p>都道府県：<c:out value="${login_user.prefecture}" /></p>
         <p>自己紹介文：<c:out value="${login_user.content}" /></p>
+        <p>いいね数：<c:out value="${login_user.likes}" /></p>
         <form  method="POST" action="<c:url value='/follow/create' />">
             <input type="hidden" name="follower_id" value="${login_user.id}" />
             <input type="hidden" name="_token" value="${_token}" />

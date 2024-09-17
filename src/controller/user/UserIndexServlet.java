@@ -39,9 +39,6 @@ public class UserIndexServlet extends HttpServlet {
                                        .getSingleResult();
 
         em.close();
-        String  b = users.get(1).getBirth_day();
-        String u= users.get(1).getName();
-
 
         List<String> manAgeList = new ArrayList<String>();
         List<String> womanAgeList = new ArrayList<String>();
