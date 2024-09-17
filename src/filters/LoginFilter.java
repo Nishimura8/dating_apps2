@@ -60,7 +60,7 @@ public class LoginFilter implements Filter {
                 }
             } else {
                 if(u != null) {
-                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/users/index");
                     return;
                 }
             }

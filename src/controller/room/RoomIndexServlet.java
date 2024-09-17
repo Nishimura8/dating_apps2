@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDAO;
 import models.Follow;
 import models.User;
 import utils.DBUtil;
@@ -41,8 +42,21 @@ public class RoomIndexServlet extends HttpServlet {
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
+
+        UserDAO dao = new UserDAO();
+        List<User> list = dao.getCountryFromName(login_user.getId());
+        List<User> id_list = new ArrayList<User>();
+        for (int i=0; list.size() > i; i++) {
+            if(i==0){
+                id_list.add(list.get(i));
+            } else {
+                id_list.add(list.get(i));
+            }
+        }
+
         List<Follow> follows = em.createNamedQuery("checkMyRoom", Follow.class)
                                      .setParameter("follow", login_user)
+                                     .setParameter("list", id_list)
                                      .getResultList();
 
         List<Follow> followCheck = new ArrayList<Follow>();
@@ -64,6 +78,8 @@ public class RoomIndexServlet extends HttpServlet {
                                        .getSingleResult();
 
         em.close();
+
+
 
         request.setAttribute("user", users);
         request.setAttribute("follows", followCheck);
