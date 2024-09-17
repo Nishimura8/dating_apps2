@@ -20,7 +20,7 @@ import utils.DBUtil;
 /**
  * Servlet implementation class EmployeesIndexServlet
  */
-@WebServlet("/index.html")
+@WebServlet("/users/index")
 public class UserIndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,8 +31,8 @@ public class UserIndexServlet extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         } catch(NumberFormatException e) { }
         List<User> users = em.createNamedQuery("getAllUsers", User.class)
-                                     .setFirstResult(16 * (page - 1))
-                                     .setMaxResults(16)
+                                     .setFirstResult(8 * (page - 1))
+                                     .setMaxResults(8)
                                      .getResultList();
 
         long users_count = (long)em.createNamedQuery("getUsersCount", Long.class)

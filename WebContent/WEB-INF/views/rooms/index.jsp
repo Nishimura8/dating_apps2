@@ -13,7 +13,7 @@
         <div id="wrapper">
             <div id="header">
                 <div id="header_2">
-                    <div class="title"><a href="${pageContext.request.contextPath}">destiny</a></div>
+                    <div class="title"><a href="${pageContext.request.contextPath}/users/index">destiny</a></div>
                       <a href="<c:url value='/logout' />"><img src="https://xk3otuup.user.webaccel.jp/wp/wp-content/uploads/2020/09/dating1.png" height="50px" alt=""></a>
         <a class="mypage-mark" href="<c:url value='/mypage/show' />">マイメニュー</a>
         <a class="message-mark" href="<c:url value='/rooms/index' />">メッセージ一覧</a>

@@ -48,7 +48,7 @@
             </c:forEach>
         </div>
         <div id="pagination">
-            <c:forEach var="i" begin="1" end="${((users_count - 1) / 16) + 1}" step="1">
+            <c:forEach var="i" begin="1" end="${((users_count - 1) / 8) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
