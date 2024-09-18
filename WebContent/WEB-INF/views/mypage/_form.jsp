@@ -83,6 +83,10 @@ pageEncoding="UTF-8"%>
 <label for="gender">性別</label><br />
 
 <select name="gender">
+    <c:if test="${user.gender == 0}">
+        <option value="0" selected >男性</option>
+        <option value="1" disabled >女性</option>
+     </c:if>
      <c:if test="${user.gender == 1}">
         <option value="0" disabled >男性</option>
         <option value="1" selected >女性</option>
