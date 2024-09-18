@@ -37,6 +37,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkFollow",
             query = "SELECT f FROM Follow AS f WHERE f.follower = :follower AND f.follow = :follow ORDER BY f.id DESC"
+            ),
+    @NamedQuery(
+            name = "checkFollower",
+            query = "SELECT f FROM Follow AS f WHERE f.follower = :follower ORDER BY f.id DESC"
             )
 })
 public class Follow {

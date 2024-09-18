@@ -14,7 +14,7 @@
             <div id="header">
                 <div id="header_2">
                     <div class="title"><a href="${pageContext.request.contextPath}/users/index">destiny</a></div>
-                      <a href="<c:url value='/logout' />"><img src="https://xk3otuup.user.webaccel.jp/wp/wp-content/uploads/2020/09/dating1.png" height="50px" alt=""></a>
+                      <a class="mark" href="<c:url value='/logout' />"><img src="https://xk3otuup.user.webaccel.jp/wp/wp-content/uploads/2020/09/dating1.png" height="50px" alt=""></a>
                     ${param.header}
                 </div>
             </div>

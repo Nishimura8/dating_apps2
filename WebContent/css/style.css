@@ -148,3 +148,12 @@ button {
     color: gray;
     font-size: 12px;
 }
+.good-list{
+    float:left;
+    padding-left:24px;
+    padding-top:10px;
+}
+.mark{
+    float:left;
+}
+
