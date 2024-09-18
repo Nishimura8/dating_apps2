@@ -65,6 +65,9 @@ public class User {
     @Column(name = "birth_day", nullable = false)
     private String birth_day;
 
+    @Column(name = "delete_flg", nullable = true)
+    private Integer delete_flg;
+
 
     public Integer getId() {
         return id;
@@ -137,5 +140,12 @@ public class User {
 
     public void setBirthDay(String birth_day) {
         this.birth_day = birth_day;
+    }
+    public int getDelete_flg() {
+        return delete_flg;
+    }
+
+    public void setDeleteFlg(int delete_flg) {
+        this.delete_flg = delete_flg;
     }
 }
