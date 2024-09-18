@@ -74,6 +74,8 @@ public class UserCreateServlet extends HttpServlet {
 
             u.setBirthDay(request.getParameter("date"));
 
+            u.setDeleteFlg(0);
+
             List<String> errors = UserValidator.validate(u, true);
             String password = EncryptUtil.getPasswordEncrypt(
                     request.getParameter("password"),
