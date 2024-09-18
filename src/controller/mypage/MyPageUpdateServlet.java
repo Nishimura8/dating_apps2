@@ -40,7 +40,8 @@ public class MyPageUpdateServlet extends HttpServlet {
 
             EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
+            User login_user = (User)request.getSession().getAttribute("login_user");
+            User u = em.find(User.class, login_user.getId());
             Part part = request.getPart("file");
             String name = this.getFileName(part);
             String path = getServletContext().getRealPath("/uploaded") + "/" + name;
@@ -61,9 +62,10 @@ public class MyPageUpdateServlet extends HttpServlet {
 
             request.getSession().removeAttribute("user_id");
 
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/users/index");
         }
     }
+
     private String getFileName(Part part) {
         String name = null;
         for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
