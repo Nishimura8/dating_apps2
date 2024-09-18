@@ -39,14 +39,15 @@ public class MyPageShowServlet extends HttpServlet {
         request.setAttribute("login_user", u);
 
         UserIndexServlet uis = new UserIndexServlet();
-        
+
         String year = u.getBirth_day().substring(0,4);
         String month = u.getBirth_day().substring(5,7);
         String date = u.getBirth_day().substring(8,10);
         int age = uis.getAge(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(date));
         String.valueOf(age);
-
-    request.setAttribute("age", age);
+        String id = request.getSession().getId();
+        request.setAttribute("_token", request.getSession().getId());
+        request.setAttribute("age", age);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/mypage/show.jsp");
         rd.forward(request, response);
     }

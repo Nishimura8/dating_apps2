@@ -19,6 +19,17 @@
         </form>
         <p><a href="<c:url value='/mypage/edit?id=${sessionScope.login_user.id}' />">プロフィールを編集する。</a></p>
         <p><a href="${pageContext.request.contextPath}">一覧に戻る</a></p>
+        <p><a href="#" onclick="confirmDestroy();">退会する</a></p>
+        <form method="POST" action="<c:url value='/mypage/destroy' />">
+             <input type="hidden" name="_token" value="${_token}" />
+        </form>
+        <script>
+            function confirmDestroy() {
+                if(confirm("本当に退会してもよろしいでしょうか？")) {
+                    document.forms[1].submit();
+                }
+            }
+        </script>
 
     </c:param>
 </c:import>

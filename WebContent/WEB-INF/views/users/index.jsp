@@ -4,6 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <c:import url="../layout/app.jsp">
     <c:param name="header">
+        <a class="good-list" href="<c:url value='/follow/index' />">いいね一覧</a>
         <a class="mypage-mark" href="<c:url value='/mypage/show' />">マイメニュー</a>
         <a class="message-mark" href="<c:url value='/rooms/index' />">メッセージ一覧</a>
     </c:param>
@@ -14,38 +15,40 @@
             </div>
         </c:if>
         <div class="content2">
-            <% int i = 0; %>
-            <c:forEach var="user" items="${users}">
-                <c:if test="${(sessionScope.login_user.gender == 0 && user.gender == 1) || (sessionScope.login_user.gender == 1 && user.gender == 0)}">
-                    <div class="user-data">
-                        <a href="${pageContext.request.contextPath}/users/show?id=${user.id}">
-                            <img src="<c:url value='${user.image}' />" class="img">
-                        </a>
-                        <div class="user-information">
-                            <div class="user-name">
-                                <c:out value="${user.name}"/>
+                <% int i = 0; %>
+                <c:forEach var="user" items="${users}">
+                    <c:if test= "${user.delete_flg == 0}">
+                        <c:if test="${(sessionScope.login_user.gender == 0 && user.gender == 1) || (sessionScope.login_user.gender == 1 && user.gender == 0)}">
+                            <div class="user-data">
+                                <a href="${pageContext.request.contextPath}/users/show?id=${user.id}">
+                                    <img src="<c:url value='${user.image}' />" class="img">
+                                </a>
+                                <div class="user-information">
+                                    <div class="user-name">
+                                        <c:out value="${user.name}"/>
+                                    </div>
+                                    <div class="age">
+                                        <c:if test="${user.gender ==1 }">
+                                                <% List <String> age = new ArrayList<String>(); %>
+                                                <% age = (List<String>)request.getAttribute("womanAgeList"); %>
+                                                <%=age.get(i)%>歳
+                                                <%i+=1; %>
+                                        </c:if>
+                                        <c:if test="${user.gender ==0 }">
+                                                <% List <String> age = new ArrayList<String>(); %>
+                                                <% age = (List<String>)request.getAttribute("manAgeList"); %>
+                                                <%=age.get(i)%>歳
+                                                <%i+=1; %>
+                                        </c:if>
+                                    </div>
+                                    <div class=likes>
+                                        <c:out value="いいね数 ${user.likes}"/>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="age">
-                                <c:if test="${user.gender ==1 }">
-                                    <% List <String> age = new ArrayList<String>(); %>
-                                    <% age = (List<String>)request.getAttribute("womanAgeList"); %>
-                                    <%=age.get(i)%>歳
-                                    <%i+=1; %>
-                                </c:if>
-                                <c:if test="${user.gender ==0 }">
-                                    <% List <String> age = new ArrayList<String>(); %>
-                                    <% age = (List<String>)request.getAttribute("manAgeList"); %>
-                                    <%=age.get(i)%>歳
-                                    <%i+=1; %>
-                                </c:if>
-                            </div>
-                            <div class=likes>
-                                <c:out value="いいね数 ${user.likes}"/>
-                            </div>
-                        </div>
-                    </div>
-                </c:if>
-            </c:forEach>
+                        </c:if>
+                    </c:if>
+                </c:forEach>
         </div>
         <div id="pagination">
             <c:forEach var="i" begin="1" end="${((users_count - 1) / 8) + 1}" step="1">
