@@ -24,7 +24,7 @@ public class UserDAO {
             Connection con = DatabaseManager.getConnection();
 
             // 3. DBとやりとりする窓口（Statementオブジェクト）の作成
-            String sql = "select f2.follow_id, f2.follow_id from follow  as f1"
+            String sql = "select f2.follow_id from follow  as f1"
                     + " inner join follow f2  on f1.follow_id = f2.follower_id "
                     + "and f2.follow_id = f1.follower_id  where f1.follow_id = ?";
             pstmt = con.prepareStatement(sql);
@@ -33,13 +33,19 @@ public class UserDAO {
             // 4, 5. Select文の実行と結果を格納／代入
             pstmt.setString(1, String.valueOf(id));
             rs = pstmt.executeQuery();
-            User user = new User();
+
             // 6. 結果を表示する
+            int i;
             while (rs.next()) {
                 // 1件ずつCountryオブジェクトを生成して結果を詰める
+                i = rs.getInt("f2.follow_id");
+                User user = new User();
                 user.setId(rs.getInt("f2.follow_id"));
+
                 // リストに追加
                 results.add(user);
+
+                System.out.print(i);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
