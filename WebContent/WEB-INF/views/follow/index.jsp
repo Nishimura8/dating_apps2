@@ -28,11 +28,19 @@
                         </c:if>
                         <c:forEach var="follow" items="${follows}" varStatus="status">
                             <div class="row${status.count % 2}"></div>
-                            <div class="message-information">
-                                <img style="width: 48px; height: 64px" src="<c:url value='${follow.follow.image}' />">
-                                <div class="message_name"><c:out value="${follow.follow.name}" />さん</div>
-                                <div class="message_action"><a href="<c:url value='/users/show?id=${follow.follow.id}' />">プロフィールを見る</a></div>
-                            </div>
+                            <c:if test="${follow.follow.delete_flg == 0}">
+                                <div class="message-information">
+                                    <img style="width: 48px; height: 64px" src="<c:url value='${follow.follow.image}' />">
+                                    <div class="message_name"><c:out value="${follow.follow.name}" />さん</div>
+                                    <div class="message_action"><a href="<c:url value='/users/show?id=${follow.follow.id}' />">プロフィールを見る</a></div>
+                                </div>
+                            </c:if>
+                            <c:if test="${follow.follow.delete_flg == 1}">
+                                <div class="message-information">
+                                    <img src="${pageContext.request.contextPath}/images/NoImage.png" style="width: 48px; height: 64px">
+                                    <div class="Unsubscribed"><c:out value="退会済みのユーザー" /></div>
+                                </div>
+                            </c:if>
                         </c:forEach>
                         <c:if test="${1 > 3 }">
                             <div id="pagination">

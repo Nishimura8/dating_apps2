@@ -27,12 +27,14 @@
                             </div>
                         </c:if>
                         <c:forEach var="follow" items="${follows}" varStatus="status">
-                            <div class="row${status.count % 2}"></div>
-                            <div class="message-information">
-                                <img style="width: 48px; height: 64px" src="<c:url value='${follow.follower.image}' />">
-                                <div class="message_name"><c:out value="${follow.follower.name}" />さんとのメッセージ</div>
-                                <div class="message_action"><a href="<c:url value='/messages/index?id=${follow.room.id}' />">メッセージを見る</a></div>
-                            </div>
+                            <c:if test="${follow.follower.delete_flg == 0 }">
+                                <div class="row${status.count % 2}"></div>
+                                <div class="message-information">
+                                    <img style="width: 48px; height: 64px" src="<c:url value='${follow.follower.image}' />">
+                                    <div class="message_name"><c:out value="${follow.follower.name}" />さんとのメッセージ</div>
+                                    <div class="message_action"><a href="<c:url value='/messages/index?id=${follow.room.id}' />">メッセージを見る</a></div>
+                                </div>
+                           </c:if>
                         </c:forEach>
                         <c:if test="${1 > 3 }">
                             <div id="pagination">
